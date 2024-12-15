@@ -1,0 +1,136 @@
+.home {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  background-color: #f0f4f8;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  color: #764ba2;
+  font-weight: bold;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  color: #764ba2;
+  margin-bottom: 20px;
+}
+
+.uploadInput {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.songGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.songCard {
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.songCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.songInfo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.songTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.songActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.likeButton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background-color: #e9ecef;
+  transition: background-color 0.3s ease;
+}
+
+.likeButton:hover {
+  background-color: #764ba2;
+  color: white;
+}
+
+.likeButton.liked {
+  background-color: #764ba2;
+  color: white;
+}
+
+.playButton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background-color: #6c63ff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.playButton:hover {
+  background-color: #5548c8;
+}
+
+.audioPlayer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #764ba2;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+}

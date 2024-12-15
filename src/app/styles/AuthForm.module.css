@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #667eea;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #764ba2;
+}
+
+.forgot {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  color: #888;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.google {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.google:hover {
+  background-color: #e0e0e0;
+}
+
+.footer {
+  margin-top: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: #667eea;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.notification {
+  color: green;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 10px;
+}
+.forgot {
+  text-align: center;
+  margin-top: 3%;
+}
+
+.forgot a {
+  color: #000000;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.forgot a:hover {
+  color: #c40dab; 
+  text-decoration: underline;
+  text-decoration: none;  
+}
