@@ -9,6 +9,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import { useRouter } from "next/navigation";
 import { auth } from "../../firebaseConfig";
 import Link from "next/link";
@@ -32,37 +33,52 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
   const onSubmit = async (data: FormData) => {
     setError(null);
-    setIsLoading(true); 
+    setIsLoading(true);
+
     try {
       if (type === "login") {
-       
         const userCredential = await signInWithEmailAndPassword(
           auth,
           data.email,
           data.password
         );
         console.log("Usuario autenticado:", userCredential.user);
-        router.push("/home"); 
+        router.push("/home");
       } else if (type === "register") {
         await createUserWithEmailAndPassword(auth, data.email, data.password);
         setNotification("¡Cuenta creada con éxito! Redirigiendo a iniciar sesión...");
         setTimeout(() => {
           router.push("/login");
-        }, 1500); 
+        }, 1500);
       } else if (type === "reset") {
         await sendPasswordResetEmail(auth, data.email);
-        setNotification("Correo de recuperación enviado. Por favor, revisa tu bandeja de entrada.");
+        setNotification(
+          "Correo de recuperación enviado. Por favor, revisa tu bandeja de entrada."
+        );
       }
     } catch (err) {
-      console.error("Error durante el proceso:", err);
-      if (err instanceof Error) {
-        if (type === "login") {
-          setError("Correo o contraseña incorrectos. Intenta de nuevo.");
-        } else if (type === "register") {
-          setError("Hubo un problema al crear la cuenta. Intenta de nuevo.");
-        } else if (type === "reset") {
-          setError("Hubo un problema al enviar el correo de recuperación.");
+      if (err instanceof FirebaseError) {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+            setError("Este correo ya está registrado. ¿Quieres iniciar sesión?");
+            break;
+          case "auth/invalid-email":
+            setError("El formato del correo electrónico no es válido.");
+            break;
+          case "auth/weak-password":
+            setError("La contraseña debe tener al menos 6 caracteres.");
+            break;
+          case "auth/user-not-found":
+            setError("No se encontró un usuario con este correo.");
+            break;
+          case "auth/wrong-password":
+            setError("Contraseña incorrecta. Intenta de nuevo.");
+            break;
+          default:
+            setError("Ocurrió un error inesperado. Intenta de nuevo.");
         }
+      } else {
+        setError("Error desconocido. Intenta de nuevo más tarde.");
       }
     } finally {
       setIsLoading(false);
@@ -77,7 +93,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
       router.push("/home");
     } catch (err) {
       console.error("Error al iniciar sesión con Google:", err);
-      if (err instanceof Error) {
+      if (err instanceof FirebaseError) {
         setError("Hubo un problema al iniciar sesión con Google. Intenta de nuevo.");
       }
     } finally {
