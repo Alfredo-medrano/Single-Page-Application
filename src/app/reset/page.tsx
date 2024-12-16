@@ -23,7 +23,7 @@ const ResetPage = () => {
     setError(null);
     try {
       await sendPasswordResetEmail(auth, data.email);
-      setNotification("Password reset email sent successfully! Check your inbox.");
+      setNotification("¡Correo de recuperación enviado! Revisa tu bandeja de entrada.");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -37,17 +37,17 @@ const ResetPage = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h1>Reset Password</h1>
+          <h1>Recuperar Contraseña</h1>
         </div>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Correo electrónico"
             {...register("email", {
-              required: "Email is required",
+              required: "El correo electrónico es obligatorio",
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "Invalid email format",
+                message: "Formato de correo electrónico inválido",
               },
             })}
             className={styles.input}
@@ -55,14 +55,14 @@ const ResetPage = () => {
           {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
           <button type="submit" className={styles.button} disabled={isLoading}>
-            {isLoading ? "Sending..." : "Send Reset Email"}
+            {isLoading ? "Enviando..." : "Enviar Correo de Recuperación"}
           </button>
           {notification && <p className={styles.notification}>{notification}</p>}
           {error && <p className={styles.error}>{error}</p>}
         </form>
 
         <p className={styles.footer}>
-          Remembered your password? <Link href="/login">Login</Link>
+          ¿Recordaste tu contraseña? <Link href="/login">Inicia sesión</Link>
         </p>
       </div>
     </div>
@@ -70,3 +70,4 @@ const ResetPage = () => {
 };
 
 export default ResetPage;
+  

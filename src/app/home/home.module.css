@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 .home {
   padding: 20px;
-  font-family: "Arial", sans-serif;
-  background-color: #f0f4f8;
 }
 
 .header {
@@ -46,6 +45,7 @@
   font-size: 1rem;
   cursor: pointer;
 }
+
 
 .songGrid {
   display: grid;
@@ -133,4 +133,85 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 1024px) {
+  .header h1 {
+    font-size: 2.4rem;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .songCard {
+    padding: 10px;
+  }
+
+  .songTitle {
+    font-size: 0.9rem;
+  }
+
+  .likeButton, .playButton {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .section h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 0.9rem;
+  }
+
+  .songGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .songCard {
+    padding: 8px;
+  }
+
+  .likeButton, .playButton {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .header p {
+    font-size: 0.8rem;
+  }
+
+  .songGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .songCard {
+    padding: 5px;
+  }
+
+  .likeButton, .playButton {
+    font-size: 0.6rem;
+    padding: 4px 6px;
+  }
+
+  .audioPlayer {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
 }

@@ -28,7 +28,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
   const [isLoading, setIsLoading] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<React.ReactNode | null>(null); // Cambiado a React.ReactNode
   const router = useRouter();
 
   const onSubmit = async (data: FormData) => {
@@ -59,23 +59,17 @@ const AuthForm = ({ type }: AuthFormProps) => {
     } catch (err) {
       if (err instanceof FirebaseError) {
         switch (err.code) {
+          case "auth/wrong-password":
+            setError("Contraseña incorrecta. Intenta de nuevo.");
+            break;
           case "auth/email-already-in-use":
             setError("Este correo ya está registrado. ¿Quieres iniciar sesión?");
             break;
           case "auth/invalid-email":
             setError("El formato del correo electrónico no es válido.");
             break;
-          case "auth/weak-password":
-            setError("La contraseña debe tener al menos 6 caracteres.");
-            break;
-          case "auth/user-not-found":
-            setError("No se encontró un usuario con este correo.");
-            break;
-          case "auth/wrong-password":
-            setError("Contraseña incorrecta. Intenta de nuevo.");
-            break;
           default:
-            setError("Ocurrió un error inesperado. Intenta de nuevo.");
+            setError("Este correo no esta registrado, resgistre el correo e inicie sesion.");
         }
       } else {
         setError("Error desconocido. Intenta de nuevo más tarde.");
